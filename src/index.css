@@ -12,6 +12,10 @@
   width: 0px;
   height: 1px;
 }
+a{
+  text-decoration: none;
+  color: black;
+}
 
 ::-webkit-scrollbar-thumb {
   background-color: rgb(114, 113, 113);
@@ -45,8 +49,16 @@
 .category-btn:hover span{
   color: white !important;
 } 
-@media screen and (max-width: 600px) {
-  .search-bar{
-    width: 100px;
+.react-player {
+  height: 77vh !important;
+  width: 100% !important;
+}
+
+@media screen and (max-width: 680px) {
+  .search-bar {
+    width: 200px;
+  }
+  .react-player {
+    height: 45vh !important;
   }
 }
