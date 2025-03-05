@@ -6,7 +6,7 @@ const fetching = async (url, query = {}) => {
   const options = {
     params: { maxResults: "50", ...query },
     headers: {
-      "X-RapidAPI-Key": "6b41343acamsh2b7cc682ce36c22p1e13efjsnff30cec24da5", // API kalitni .env orqali olish
+      "X-RapidAPI-Key": "60a0c46e20msh7dd031214607484p1e4aeejsn577ab43499fb", // API kalitni .env orqali olish
       "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
     },
   };
