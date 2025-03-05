@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 import { Box, Typography, Stack, Avatar, Divider } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
