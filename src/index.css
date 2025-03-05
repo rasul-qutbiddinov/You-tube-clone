@@ -6,7 +6,7 @@
 .search-bar{
   border: none;
   outline:none;
-  width: 250px;
+  width: 400px;
 }
 ::-webkit-scrollbar {
   width: 0px;
@@ -45,3 +45,8 @@
 .category-btn:hover span{
   color: white !important;
 } 
+@media screen and (max-width: 600px) {
+  .search-bar{
+    width: 100px;
+  }
+}

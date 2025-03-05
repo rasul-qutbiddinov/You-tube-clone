@@ -19,7 +19,7 @@ const Navbar = () => {
       }}
     >
       <Link to="/">
-        <img     
+        <img 
           width="58"
           height="58"
           src="https://img.icons8.com/ink/48/youtube-play.png"

@@ -1,14 +1,12 @@
 import PropTypes from "prop-types";
-import { Stack, Box, Typography } from "@mui/material";
+import { Stack, Box, } from "@mui/material";
 import VideoCard from "../video-card/video-card";
+import Channelcard from "../channel-card/channel-card";
+import Loader from "../loader/loader"; // ✅ Loader komponenti qo‘shildi
 
 const Videos = ({ videos = [] }) => {
   if (!videos.length) {
-    return (
-      <Typography variant="h6" color="gray" textAlign="center" width="100%">
-        No videos available
-      </Typography>
-    );
+    return <Loader />; // ✅ Agar video bo‘lmasa, Loader chiqariladi
   }
 
   return (
@@ -23,6 +21,7 @@ const Videos = ({ videos = [] }) => {
       {videos?.map((item) => (
         <Box key={item.id?.videoId || item.id?.channelId}>
           {item.id?.videoId && <VideoCard video={item} />}
+          {item.id?.channelId && <Channelcard video={item} />}
         </Box>
       ))}
     </Stack>
