@@ -54,6 +54,8 @@ const ChannelCard = ({ video }) => {
             <CheckCircle sx={{ fontSize: "14px", color: "gray", ml: "5px" }} />
           </Typography>
 
+          
+
           {subscriberCount ? (
             <Typography
               sx={{ fontSize: "15px", fontWeight: 500, color: "gray" }}
