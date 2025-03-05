@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 import { Box, Typography, Stack, Avatar, Divider } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom"; // ✅ Link import qilindi
 import ReactPlayer from "react-player";
 import { apiservice } from "../../service/api.service";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -12,7 +13,7 @@ import Videos from "../videos/videos";
 const VideoDetail = () => {
   const [videoDetail, setVideoDetail] = useState({});
   const [relatedVideo, setRelatedVideo] = useState([]);
-  const [comments, setComments] = useState([]); // ✅ Yangi: Izohlar uchun holat
+  const [comments, setComments] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -39,7 +40,8 @@ const VideoDetail = () => {
           {
             method: "GET",
             headers: {
-              "x-rapidapi-key": "60a0c46e20msh7dd031214607484p1e4aeejsn577ab43499fb",
+              "x-rapidapi-key":
+                "60a0c46e20msh7dd031214607484p1e4aeejsn577ab43499fb",
               "x-rapidapi-host": "youtube-v31.p.rapidapi.com",
             },
           }
@@ -52,7 +54,7 @@ const VideoDetail = () => {
     };
 
     getData();
-    getComments(); // ✅ Yangi: Izohlarni olish uchun chaqiruv
+    getComments();
   }, [id]);
 
   const { snippet = {}, statistics = {} } = videoDetail;
@@ -61,6 +63,7 @@ const VideoDetail = () => {
     channelTitle = "",
     description = "",
     thumbnails = {},
+    channelId = "",
   } = snippet;
   const { viewCount = "0", likeCount = "0", commentCount = "0" } = statistics;
 
@@ -81,14 +84,23 @@ const VideoDetail = () => {
             py={1}
           >
             <Stack direction="row" alignItems="center" gap="5px">
-              <Avatar
-                alt={channelTitle}
-                src={thumbnails?.default?.url || "/default-avatar.png"}
-                sx={{ width: 40, height: 40 }}
-              />
-              <Typography variant="subtitle2" color="gray">
-                {channelTitle}
-              </Typography>
+              {/* ✅ Avatar va kanal nomi bosilganda kanal sahifasiga o'tadi */}
+              <Link to={`/channel/${ videoDetail?.snippet?.channelId}`}>
+                <Avatar
+                  alt={channelTitle}
+                  src={thumbnails?.default?.url || "/default-avatar.png"}
+                  sx={{ width: 40, height: 40, cursor: "pointer" }}
+                />
+              </Link>
+              <Link to={`/channel/${channelId}`}>
+                <Typography
+                  variant="subtitle2"
+                  color="gray"
+                  sx={{ cursor: "pointer" }}
+                >
+                  {channelTitle}
+                </Typography>
+              </Link>
               <CheckCircleIcon
                 sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
               />
@@ -121,7 +133,7 @@ const VideoDetail = () => {
             }}
           />
 
-          {/* ✅ Yangi: Izohlarni ko'rsatish */}
+          {/* Izohlarni ko'rsatish */}
           <Box mt={4}>
             <Typography variant="h6" fontWeight="bold">
               Comments

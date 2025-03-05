@@ -18,6 +18,7 @@ const VideoCard = ({ video }) => {
     publishedAt,
     channelTitle,
     thumbnails = {},
+    // channelId,
   } = snippet;
 
   return (
@@ -39,16 +40,29 @@ const VideoCard = ({ video }) => {
       <CardContent
         sx={{ height: "200px", position: "relative", backgroundColor: "#fff" }}
       >
-        <Link to={`/video/${video.id.videoId}`}>
-          <Stack direction="row" alignItems="center" gap="5px">
-            <Avatar src={thumbnails?.high?.url || "/default-avatar.png"} />
-            <Typography variant="subtitle2" color="gray">
+        <Stack direction="row" alignItems="center" gap="5px">
+          {/* ✅ Avatar bosilganda kanal sahifasiga o'tadi */}
+          <Link to={`/channel/${video?.snippet?.channelId}`}>
+            <Avatar
+              src={thumbnails?.high?.url || "/default-avatar.png"}
+              sx={{ cursor: "pointer" }}
+            />
+          </Link>
+          <Link to={`/channel/${video?.snippet?.channelId}`}>
+            <Typography
+              variant="subtitle2"
+              color="gray"
+              sx={{ cursor: "pointer" }}
+            >
               {channelTitle || "Unknown Channel"}
             </Typography>
-            <Typography my={"1px"} sx={{ opacity: ".5", marginLeft: "auto" }}>
-              {publishedAt ? moment(publishedAt).fromNow() : "Unknown Date"}
-            </Typography>
-          </Stack>
+          </Link>
+          <Typography my={"1px"} sx={{ opacity: ".5", marginLeft: "auto" }}>
+            {publishedAt ? moment(publishedAt).fromNow() : "Unknown Date"}
+          </Typography>
+        </Stack>
+
+        <Link to={`/video/${video.id.videoId}`}>
           <Typography variant="subtitle1" fontWeight="bold">
             {title?.slice(0, 50) || "No Title"}
           </Typography>
